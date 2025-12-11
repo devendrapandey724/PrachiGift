@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday & I'm Sorry, Prachi 🎂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ff6ba6;
+      --secondary: #ffd166;
+      --accent: #6366f1;
+      --bg: #020617;
+      --card-bg: rgba(15, 23, 42, 0.96);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.45);
+      --shadow-strong: 0 24px 60px rgba(0, 0, 0, 0.95);
+      --radius-lg: 20px;
+      --radius-sm: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(circle at top, #0b1120 0, #020617 50%, #020617 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    /* 3D BACKGROUND CANVAS */
+    #bg3d {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* LAYOUT */
+    .shell {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 4.4rem 0;
+    }
+
+    @media (min-width: 768px) {
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    /* HEADER / NAV */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(2,6,23,0.95), rgba(2,6,23,0.8));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .nav {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0.6rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #fff;
+    }
+
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: conic-gradient(from 220deg, #ff6ba6, #ffd166, #6366f1, #ff6ba6);
+      box-shadow: 0 0 18px rgba(255, 107, 166, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-icon::after {
+      content: "🎂";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .logo-text-main {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.4rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.35), transparent 60%),
+                  rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(14px);
+    }
+
+    nav li {
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    nav a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      color: #e5e7eb;
+      text-decoration: none;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    nav a span.dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--secondary);
+      box-shadow: 0 0 8px rgba(250, 204, 21, 0.9);
+    }
+
+    nav a:hover {
+      color: #f9fafb;
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    nav a:hover::before {
+      opacity: 1;
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      margin: 4px 0;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        inset: 72px 1.2rem auto 1.2rem;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.9rem 0.8rem;
+        border-radius: 1.1rem;
+        transform-origin: top;
+        transform: translateY(-16px) scale(0.95);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      nav ul.open {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      nav li {
+        border-radius: 0.8rem;
+      }
+
+      nav a {
+        justify-content: flex-start;
+      }
+
+      .nav-toggle {
+        display: inline-block;
+      }
+    }
+
+    main {
+      padding-top: 80px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transform-style: preserve-3d;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background-position 0.23s ease;
+    }
+
+    .btn-primary {
+      background-image: linear-gradient(135deg, #ff6ba6, #ffd166, #6366f1);
+      background-size: 170% 170%;
+      color: #0f172a;
+      box-shadow:
+        0 8px 0 rgba(148, 27, 87, 1),
+        0 18px 35px rgba(255, 107, 166, 0.95);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background-position: 100% 0;
+      box-shadow:
+        0 4px 0 rgba(148, 27, 87, 1),
+        0 18px 38px rgba(255, 107, 166, 1);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.98);
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.95);
+      box-shadow:
+        0 7px 0 rgba(15, 23, 42, 1),
+        0 18px 30px rgba(0, 0, 0, 1);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* SHARED CARD STYLE */
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 60%),
+                  radial-gradient(circle at bottom, rgba(37,99,235,0.5), rgba(15,23,42,1));
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-strong);
+      padding: 1.2rem 1.3rem;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: left;
+      }
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 1);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 1);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1.6rem, 3.1rem);
+      line-height: 1.04;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow:
+        0 3px 0 #020617,
+        0 14px 35px rgba(0, 0, 0, 1);
+    }
+
+    .hero-title span.name {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.3em;
+      display: inline-block;
+      background: linear-gradient(120deg, #ffd166, #ff6ba6, #6366f1);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 26px rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-text {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-text strong {
+      color: var(--secondary);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .hero-note span {
+      color: var(--secondary);
+    }
+
+    .hero-right {
+      max-width: 330px;
+      margin-left: auto;
+    }
+
+    @media (max-width: 900px) {
+      .hero-right {
+        margin: 0;
+        max-width: 100%;
+        margin-top: 0.6rem;
+      }
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 1);
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      filter: saturate(1.15) contrast(1.05);
+    }
+
+    .hero-badge-floating {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(248, 250, 252, 0.4);
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 1);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 1);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .hero-photo-tag {
+      position: absolute;
+      left: 0.8rem;
+      bottom: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      font-size: 0.72rem;
+      display: inline-flex;
+      gap: 0.32rem;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-photo-tag span.icon {
+      filter: drop-shadow(0 0 10px rgba(248, 250, 252, 1));
+    }
+
+    /* SECTION HEADING */
+    .section-heading {
+      text-align: left;
+      margin-bottom: 2.2rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-shadow: 0 12px 28px rgba(0, 0, 0, 0.9);
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title span {
+      background: linear-gradient(120deg, #ffd166, #ff6ba6, #6366f1);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 430px;
+    }
+
+    /* HIGHLIGHTS */
+    #highlights .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1.4rem;
+    }
+
+    .highlight-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(37,99,235,0.45), rgba(15,23,42,1));
+      border: 1px solid var(--border-soft);
+      padding: 0.95rem 1rem;
+      box-shadow: var(--shadow-strong);
+      transform: translateY(22px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.25s ease;
+    }
+
+    .highlight-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .highlight-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,1);
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.22rem;
+    }
+
+    .highlight-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* STORY (you commented it out, styles kept safe) */
+    #story .timeline {
+      margin-top: 1.6rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: rgba(15, 23, 42, 0.96);
+      box-shadow: var(--shadow-strong);
+      padding: 1rem 1.2rem;
+    }
+
+    .story-step {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0.55rem 0;
+      position: relative;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .story-step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .story-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 1.55rem;
+      bottom: -0.2rem;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(148,163,184,0.8), rgba(148,163,184,0.1));
+    }
+
+    .story-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #020617;
+      border: 2px solid #f97316;
+      box-shadow: 0 0 16px rgba(248,113,113,1);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .story-body {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .story-body strong {
+      color: #e5e7eb;
+    }
+
+    /* SORRY */
+    #sorry .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 1.6rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      #sorry .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .sorry-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(255,255,255,0.22), transparent 65%),
+                  radial-gradient(circle at bottom, rgba(248,113,113,0.7), rgba(15,23,42,1));
+      border: 1px solid rgba(248,113,113,0.95);
+      box-shadow: var(--shadow-strong);
+      padding: 1.2rem 1.3rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .sorry-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sorry-big {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+      text-shadow:
+        0 3px 0 #b91c1c,
+        0 12px 30px rgba(0, 0, 0, 1);
+    }
+
+    .sorry-text {
+      font-size: 0.86rem;
+      color: #fef2f2;
+    }
+
+    .sorry-text strong {
+      color: #facc15;
+    }
+
+    .forgive-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(125,211,252,0.55), transparent 70%),
+                  rgba(15,23,42,1);
+      border: 1px solid rgba(96,165,250,0.95);
+      box-shadow: var(--shadow-strong);
+      padding: 1.1rem 1.2rem;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .forgive-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .forgive-title {
+      font-size: 0.94rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .forgive-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .forgive-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .forgive-message {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      min-height: 1.2em;
+    }
+
+    /* CONTACT */
+    #contact .contact-card {
+      margin-top: 1.5rem;
+    }
+
+    .contact-card p {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-note {
+      font-size: 0.78rem;
+      color: #cbd5f5;
+    }
+
+    .contact-card {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .contact-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CONFETTI */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 8px;
+      height: 14px;
+      opacity: 0.9;
+      border-radius: 2px;
+      z-index: 40;
+      animation: confetti-fall linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translate3d(0, -10px, 0) rotateZ(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 110vh, 0) rotateZ(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.3rem 0 1.6rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer span {
+      color: #f97316;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 3D BACKGROUND -->
+  <canvas id="bg3d"></canvas>
+
+  <!-- MUSIC -->
+  <audio id="bg-music" src="music.mp3" autoplay loop></audio>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <div>
+          <div class="logo-text-main">Birthday & Sorry</div>
+          <div class="logo-text-sub">for Prachi</div>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="#hero"><span class="dot"></span> Home</a></li>
+            <li><a href="#highlights"><span class="dot"></span> Tum Mere Liye</a></li>
+            <!-- <li><a href="#story"><span class="dot"></span> Story</a></li> -->
+            <li><a href="#sorry"><span class="dot"></span> Sorry</a></li>
+            <li><a href="#contact"><span class="dot"></span> Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tagline">
+            <span class="hero-tag-dot"></span>
+            <span>Birthday wish + ek honest sorry</span>
+          </div>
+
+          <h1 class="hero-title">
+            Happy Birthday
+            <span class="name"> Prachi </span>
+          </h1>
+
+          <p class="hero-text">
+            Haan, abhi aap mujhse <strong>naraz</strong> ho.  
+            Bas itna jaan lo: <strong>aap meri life ki sabse special insan ho</strong>,  
+            aur main aapko khona nahi chahta hu.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="surprise-btn">
+              🤍 Sorry
+            </button>
+            <a href="#highlights" class="btn btn-ghost">
+              💫 Aap mere liye kya ho
+            </a>
+          </div>
+
+          <p class="hero-note">
+            <span>Prachi</span> aapke ke liye chhota sa gift aur sorry bhi
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-photo-wrap card">
+            <div class="hero-photo">
+              <!-- Yahan uski photo ka link daalo (agar ho) -->
+              <img
+                src="Meri Princi.png"
+                alt="Birthday girl"
+              />
+              <div class="hero-badge-floating">
+                <span class="pulse-dot"></span>
+                <span style="padding-right: 10px;">Meri zindagi ka sabse anmol hissa, Prachi ✨</span>
+              </div>
+              <div class="hero-photo-tag">
+                <span class="icon">⭐</span>
+                <span>Prachi • A Pure Soul</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TUM MERE LIYE -->
+    <section id="highlights">
+      <div class="section-heading">
+        <div class="section-eyebrow">Prachi</div>
+        <h2 class="section-title">
+          Aap <span>mere liye kya ho</span>
+        </h2>
+        <p class="section-subtitle">
+          Thoda sa short me likh raha hoon — baaki aap toh sab jaanti ho. 💗
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="highlight-card">
+          <div class="highlight-icon">💫</div>
+          <div class="highlight-title">Mera support</div>
+          <p class="highlight-text">
+            Jab bhi mai kisi chizz se pareshan hua toh aap mujhe samjhaai ho.
+            Mera kitna khyal rakhi ho. Hamesha mere saath rahena.
+          </p>
+        </article>
+
+        <article class="highlight-card">
+          <div class="highlight-icon">🎧</div>
+          <div class="highlight-title">Mera comfort zone</div>
+          <p class="highlight-text">
+            Aapke paas raheta hu na toh mai sab pareshaniya bhul jata hu.
+            Aapke saath rahena mujhe bahut pasand hai. Ek alag hi sukoon milta h aapke paas.
+          </p>
+        </article>
+
+        <article class="highlight-card">
+          <div class="highlight-icon">💫</div>
+          <div class="highlight-title">Sabse khaas insan</div>
+          <p class="highlight-text">
+            Simple si baat h: <strong>aap mere liye bahut khaas ho</strong> bs.  
+            Isliye mujhse kabhi naraz mat hua karo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SORRY -->
+    <section id="sorry">
+      <div class="section-heading">
+        <div class="section-eyebrow">Dil se</div>
+        <h2 class="section-title">
+          Bol rha hu: <span>I'm sorry</span>
+        </h2>
+      </div>
+
+      <div class="grid">
+        <div class="sorry-card">
+          <div class="sorry-big">I'M&nbsp;SORRY</div>
+          <p class="sorry-text">
+            <strong>Prachi</strong> mai janta hu, mai ne jo kaha tha vo galat h, lekin mera <strong>intension</strong> galat nahi tha.
+            Aap ke liye kabhi galat ni socha mai.  
+            mai toh sirf aapke paas rahena chahta hu hamesha... aap mujhse dur na ho jaao isliye bola tha.
+            <strong>mai kabhi ni socha tha ki aapko ye baat bata paaunga</strong>,  
+            hogai h galti maaf kr do, mujhe nahi bolna chahiye tha. <strong>Sorry</strong>,
+            aur haan… bahut <strong>miss</strong> kar raha hu aapko.
+          </p>
+        </div>
+
+        <div class="forgive-card">
+          <div class="forgive-title">Mujhe maaf karogi...?</div>
+          <p class="forgive-text">
+            Agar aapko lagta hai ki mai galat ni hu, toh ek chhota सा "haan" bol do, maaf kr do mujhe, pahele jaise rahena h ab. Agar time chahiye,  
+            toh lelo mai yahi hu bs der mat karna...
+          </p>
+
+          <div class="forgive-actions">
+            <button class="btn btn-primary" id="forgive-yes">
+              🤍 Haan, maaf karti hoon
+            </button>
+            <button class="btn btn-ghost" id="forgive-later">
+              ⏳ Abhi time chahiye
+            </button>
+          </div>
+
+          <p class="forgive-message" id="forgive-message"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-heading">
+        <div class="section-eyebrow">Kabhi bhi</div>
+        <h2 class="section-title">
+          Mujhse <span>contact kar sakti ho</span>
+        </h2>
+        <p class="section-subtitle">
+          Jab bhi aapko lage ki mujhse ek baar baat kr lena chahiye —  
+          toh ek message bs daal dena ya toh call kr lena.
+        </p>
+      </div>
+
+      <div class="contact-card card">
+        <p>
+          Main force nahi karunga  
+          <strong>Agar mai aapko sahi lagu toh baat kr lena.</strong>
+        </p>
+
+        <div class="contact-actions">
+          <a class="btn btn-primary"
+             href="https://wa.me/919112379133" target="_blank" rel="noopener noreferrer">
+            💬 WhatsApp
+          </a>
+
+          <a class="btn btn-ghost"
+             href="https://www.snapchat.com/add/kishanpandey724" target="_blank" rel="noopener noreferrer">
+            👻 Snapchat
+          </a>
+
+          <a class="btn btn-ghost"
+             href="mailto:kishanpande724@gmail.com" rel="noopener noreferrer">
+            ✉️ Email
+          </a>
+        </div>
+
+        <div class="contact-note">
+          (Kabhi bhi message kar sakti ho. Main yahin hoon — intzaar kar raha hu.)
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with <span>♥</span> sirf aapko manaane ke liye.
+  </footer>
+
+  <!-- THREE.JS CDN -->
+  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+
+  <script>
+    // === THREE.JS 3D BACKGROUND: NEON "PRACHI" ===
+    const canvas = document.getElementById('bg3d');
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+      55,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    camera.position.set(0, 1.4, 9);
+
+    // Lights
+    const ambient = new THREE.AmbientLight(0xffffff, 0.9);
+    scene.add(ambient);
+
+    const pinkLight = new THREE.PointLight(0xff6ba6, 1.4, 32);
+    pinkLight.position.set(4, 4, 6);
+    scene.add(pinkLight);
+
+    const purpleLight = new THREE.PointLight(0x6366f1, 1.2, 30);
+    purpleLight.position.set(-4, 3, -5);
+    scene.add(purpleLight);
+
+    const warmLight = new THREE.PointLight(0xffd166, 1.1, 26);
+    warmLight.position.set(0, 6, 2);
+    scene.add(warmLight);
+
+    const mainGroup = new THREE.Group();
+    scene.add(mainGroup);
+
+    // Create a neon text texture using 2D canvas and use it on a Plane
+    function createNeonTextTexture(text) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background transparent
+      ctx.fillStyle = 'rgba(0,0,0,0)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const fontSize = 140;
+      ctx.font = `bold ${fontSize}px Poppins, system-ui, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Neon glow
+      ctx.shadowColor = '#ff6ba6';
+      ctx.shadowBlur = 35;
+
+      // Stroke (outer border)
+      ctx.lineWidth = 8;
+      const gradStroke = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      gradStroke.addColorStop(0, '#ffd166');
+      gradStroke.addColorStop(0.5, '#ff6ba6');
+      gradStroke.addColorStop(1, '#6366f1');
+      ctx.strokeStyle = gradStroke;
+      ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+
+      // Fill (inner glow)
+      ctx.shadowBlur = 18;
+      const gradFill = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      gradFill.addColorStop(0, '#ffe4f2');
+      gradFill.addColorStop(0.5, '#ffb0d4');
+      gradFill.addColorStop(1, '#d1dbff');
+      ctx.fillStyle = gradFill;
+      ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+      return new THREE.CanvasTexture(canvas);
+    }
+
+    const neonTexture = createNeonTextTexture('PRACHI');
+    neonTexture.needsUpdate = true;
+
+    const textPlaneGeo = new THREE.PlaneGeometry(8, 2);
+    const textPlaneMat = new THREE.MeshBasicMaterial({
+      map: neonTexture,
+      transparent: true,
+      side: THREE.DoubleSide
+    });
+    const textMesh = new THREE.Mesh(textPlaneGeo, textPlaneMat);
+    mainGroup.add(textMesh);
+
+    // Stars background
+    const starGeo = new THREE.BufferGeometry();
+    const starCount = 550;
+    const positions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const r = 45;
+      const idx = i * 3;
+      positions[idx] = (Math.random() - 0.5) * r * 2;
+      positions[idx + 1] = Math.random() * r;
+      positions[idx + 2] = (Math.random() - 0.5) * r * 2;
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starMat = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 0.12,
+      transparent: true,
+      opacity: 0.85
+    });
+    const stars = new THREE.Points(starGeo, starMat);
+    scene.add(stars);
+
+    // Scroll effect
+    let scrollFactor = 0;
+    function updateScrollFactor() {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      scrollFactor = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+    }
+    window.addEventListener('scroll', updateScrollFactor);
+    updateScrollFactor();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = performance.now() * 0.0005;
+
+      // Slight rotation + float
+      mainGroup.rotation.y = Math.sin(t * 0.7) * 0.35;
+      mainGroup.rotation.x = (scrollFactor - 0.5) * 0.6;
+      mainGroup.position.y = (scrollFactor - 0.5) * 1.2 + Math.sin(t * 1.6) * 0.3;
+
+      stars.rotation.y = t * 0.18;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // NAV TOGGLE
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+      });
+    });
+
+    // SMOOTH SCROLL (safety)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.length > 1) {
+          e.preventDefault();
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // REVEAL ON SCROLL
+    const revealEls = document.querySelectorAll(
+      '.highlight-card, .story-step, .sorry-card, .forgive-card, .contact-card'
+    );
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => io.observe(el));
+
+    // CONFETTI
+    function shootConfetti() {
+      const colors = ['#ff6ba6', '#ffd166', '#6366f1', '#4ade80', '#38bdf8'];
+      const confettiCount = 150;
+
+      for (let i = 0; i < confettiCount; i++) {
+        const conf = document.createElement('span');
+        conf.classList.add('confetti');
+
+        const size = Math.random() * 7 + 4;
+        conf.style.width = size + 'px';
+        conf.style.height = (size * 1.4) + 'px';
+
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.animationDuration = (Math.random() * 2.5 + 3) + 's';
+        conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        conf.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 6000);
+      }
+    }
+
+    // MUSIC AUTOPLAY
+    const bgMusic = document.getElementById('bg-music');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (musicStarted || !bgMusic) return;
+      bgMusic.volume = 0.7;
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          musicStarted = true;
+        }).catch(() => {
+          // browser block kare to first interaction par chalega
+        });
+      } else {
+        musicStarted = true;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', startMusic);
+    document.addEventListener('click', startMusic, { once: true });
+    document.addEventListener('touchstart', startMusic, { once: true });
+
+    // SURPRISE BUTTON
+    const surpriseBtn = document.getElementById('surprise-btn');
+    surpriseBtn.addEventListener('click', () => {
+      startMusic();
+      shootConfetti();
+      setTimeout(() => {
+        document.getElementById('sorry').scrollIntoView({ behavior: 'smooth' });
+      }, 700);
+    });
+
+    // FORGIVE BUTTONS
+    const forgiveYes = document.getElementById('forgive-yes');
+    const forgiveLater = document.getElementById('forgive-later');
+    const forgiveMessage = document.getElementById('forgive-message');
+
+    forgiveYes.addEventListener('click', () => {
+      forgiveMessage.textContent = 'Thank you... Prachi mai jaanta tha aap mujhse gussa nahi hogi kabhi';
+      shootConfetti();
+    });
+
+    forgiveLater.addEventListener('click', () => {
+      forgiveMessage.textContent = 'Theek hai, mai intzaar kar raha hu.... aap acche se rahena hamesha. Jyada der mat karna thik h.';
+    });
+  </script>
+</body>
+</html>
